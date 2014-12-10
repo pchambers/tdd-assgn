@@ -34,19 +34,4 @@ public class SampleRomanArabicConverterTest {
     public void inputIIII() throws Exception {
         new RomanArabicConverter("IIII");
     }
-
-    @Test(expected = MalformedNumberException.class)
-    public void inputLowCase() throws Exception {
-        new RomanArabicConverter("iii");
-    }
-
-    @Test(expected = ValueOutOfBoundsException.class)
-    public void lowInputTest() throws Exception {
-        new RomanArabicConverter("0").toRoman();
-    }
-
-    @Test(expected = ValueOutOfBoundsException.class)
-    public void highInputTest() throws Exception {
-        new RomanArabicConverter("4000").toRoman();
-    }
 }

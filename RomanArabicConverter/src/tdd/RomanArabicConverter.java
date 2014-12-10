@@ -45,7 +45,8 @@ public class RomanArabicConverter {
     /** The Roman Character value */
     String roman;
 
-    public RomanArabicConverter(String value) throws MalformedNumberException {
+    public RomanArabicConverter(String value) throws MalformedNumberException,
+    ValueOutOfBoundsException {
         saveValue(value);
     }
 
@@ -55,12 +56,13 @@ public class RomanArabicConverter {
      * @param value is the string read from the constructor
      * @throws MalformedNumberException if there is a 'null' or empty string.
      */
-    public void saveValue(String value) throws MalformedNumberException {
+    public void saveValue(String value) throws MalformedNumberException, ValueOutOfBoundsException {
         if (value.equals("")) {
             throw new MalformedNumberException("ERROR: Cannot convert empty input.");
         }
         try {
             arabic = Integer.parseInt(value);
+            validateArabic();
         } catch (NumberFormatException e) {
             roman = value;
             validateRoman();
@@ -88,8 +90,8 @@ public class RomanArabicConverter {
      * @throws ValueOutOfBoundsException throws error if expectations are not met
      */
     public void validateArabic() throws ValueOutOfBoundsException {
-        if (arabic.equals("")) {// Needs to be initialized in toRoman method.
-        }
+        // if (arabic.equals("") || arabic == null) {// Needs to be initialized in toRoman method.
+        // }
         if (arabic < 1) {
             throw new ValueOutOfBoundsException(
                     "Value to small, please input value between 1-3999.");
@@ -117,9 +119,6 @@ public class RomanArabicConverter {
      */
     public String toRoman() throws ValueOutOfBoundsException {
         // TODO: Convert numbers to Roman numerals
-        // System.out.println("arabic: " + arabic.toString());
-        validateArabic();
-
         return roman = "I";
     }
 }
