@@ -49,20 +49,29 @@ public class RomanArabicConverter {
         saveValue(value);
     }
 
-
+    /**
+     * Saves the value of the input to the correct field, based on input intended type.
+     *
+     * @param value is the string read from the constructor
+     * @throws MalformedNumberException if there is a 'null' or empty string.
+     */
     public void saveValue(String value) throws MalformedNumberException {
         if (value.equals("")) {
             throw new MalformedNumberException("ERROR: Cannot convert empty input.");
         }
         try {
             arabic = Integer.parseInt(value);
-            validateArabic();
         } catch (NumberFormatException e) {
             roman = value;
             validateRoman();
         }
     }
 
+    /**
+     * Validates the Roman field to ensure it matches project expectations.
+     *
+     * @throws MalformedNumberException throws error if expectations are not met.
+     */
     public void validateRoman() throws MalformedNumberException {
         if (roman.equals("IIII")) {
             // TODO Make this do.
@@ -73,8 +82,22 @@ public class RomanArabicConverter {
         }
     }
 
-    public void validateArabic() throws MalformedNumberException {
-
+    /**
+     * Validates the Arabic field to ensure it matches project expectations
+     *
+     * @throws ValueOutOfBoundsException throws error if expectations are not met
+     */
+    public void validateArabic() throws ValueOutOfBoundsException {
+        if (arabic.equals("")) {// Needs to be initialized in toRoman method.
+        }
+        if (arabic < 1) {
+            throw new ValueOutOfBoundsException(
+                    "Value to small, please input value between 1-3999.");
+        }
+        if (arabic > 399) {
+            throw new ValueOutOfBoundsException(
+                    "Value to large, please input value between 1-3999.");
+        }
     }
 
     /**
@@ -94,6 +117,9 @@ public class RomanArabicConverter {
      */
     public String toRoman() throws ValueOutOfBoundsException {
         // TODO: Convert numbers to Roman numerals
+        // System.out.println("arabic: " + arabic.toString());
+        validateArabic();
+
         return roman = "I";
     }
 }

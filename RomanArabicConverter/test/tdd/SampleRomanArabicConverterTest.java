@@ -39,4 +39,14 @@ public class SampleRomanArabicConverterTest {
     public void inputLowCase() throws Exception {
         new RomanArabicConverter("iii");
     }
+
+    @Test(expected = ValueOutOfBoundsException.class)
+    public void lowInputTest() throws Exception {
+        new RomanArabicConverter("0").toRoman();
+    }
+
+    @Test(expected = ValueOutOfBoundsException.class)
+    public void highInputTest() throws Exception {
+        new RomanArabicConverter("4000").toRoman();
+    }
 }
