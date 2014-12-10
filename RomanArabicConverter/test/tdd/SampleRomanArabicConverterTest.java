@@ -34,4 +34,9 @@ public class SampleRomanArabicConverterTest {
     public void inputIIII() throws Exception {
         new RomanArabicConverter("IIII");
     }
+
+    @Test(expected = MalformedNumberException.class)
+    public void inputLowCase() throws Exception {
+        new RomanArabicConverter("iii");
+    }
 }

@@ -65,7 +65,11 @@ public class RomanArabicConverter {
 
     public void validateRoman() throws MalformedNumberException {
         if (roman.equals("IIII")) {
+            // TODO Make this do.
             throw new MalformedNumberException("Invalid Roman Format.");
+        }
+        if (!roman.equals(roman.toUpperCase())) {
+            throw new MalformedNumberException("Input requires all capital numerals");
         }
     }
 
