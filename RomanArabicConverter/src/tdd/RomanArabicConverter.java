@@ -46,21 +46,30 @@ public class RomanArabicConverter {
     String roman;
 
     public RomanArabicConverter(String value) throws MalformedNumberException {
-        validateValue(value);
-
-        System.out.println(value);
-        roman = value;
-        // System.out.println("Roman: " + roman);
-        arabic = Integer.parseInt(value);
-        System.out.println("Arabic: " + arabic.toString());
+        saveValue(value);
     }
 
 
-    public void validateValue(String value) throws MalformedNumberException {
+    public void saveValue(String value) throws MalformedNumberException {
         if (value.equals("")) {
             throw new MalformedNumberException("ERROR: Cannot convert empty input.");
         }
+        try {
+            arabic = Integer.parseInt(value);
+            validateArabic();
+        } catch (NumberFormatException e) {
+            roman = value;
+            validateRoman();
+        }
+    }
 
+    public void validateRoman() throws MalformedNumberException {
+        if (roman.equals("IIII")) {
+            throw new MalformedNumberException("Invalid Roman Format.");
+        }
+    }
+
+    public void validateArabic() throws MalformedNumberException {
 
     }
 
@@ -69,7 +78,7 @@ public class RomanArabicConverter {
      */
     public int toArabic() {
         // TODO: Convert numbers to Arabic
-        return 1;
+        return arabic = 1;
     }
 
     /**
@@ -81,6 +90,6 @@ public class RomanArabicConverter {
      */
     public String toRoman() throws ValueOutOfBoundsException {
         // TODO: Convert numbers to Roman numerals
-        return "I";
+        return roman = "I";
     }
 }
